@@ -1,14 +1,14 @@
-import {Text, Pressable} from "react-native";
+import {Text, Pressable, PressableProps} from "react-native";
 
-type CategoryButtonProps = {
+type CategoryButtonProps = PressableProps &{
     title: string;
     isSelect?: boolean;
 }
 
-export function CategoryButton({title} : CategoryButtonProps) {
+export function CategoryButton({title, isSelect, ...rest} : CategoryButtonProps) {
     return (
-        <Pressable className="flex-row items-center bg-white rounded-lg p-2 mx-2">
-            <Text >{title}</Text>
+        <Pressable className="bg-amber-400 px-4 h-10 justify-center rounded-md">
+            <Text className='text-slate-900 font-subTitle text-sm'>{title}</Text>
         </Pressable>
     )
 }
