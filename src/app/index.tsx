@@ -50,7 +50,7 @@ export default function Home() {
             />}
             horizontal
             showsHorizontalScrollIndicator={false}
-            className="max-h-10 mt-5"
+            className="max-h-14 mt-5"
             contentContainerStyle={{paddingHorizontal: 20, gap: 12}}
         />
 
@@ -65,9 +65,9 @@ export default function Home() {
                 </Link>
             )}
             renderSectionHeader={({section: {title}}) => (
-                <Text className="text-xl text-slate-900 font-heading mt-8 mb-3">{title}</Text>
+                <Text className="text-xl text-slate-900 font-heading mt-4 mb-3">{title}</Text>
             )}
-            className="flex-1 p-5"
+            className="flex-1 px-5"
             contentContainerStyle={{paddingBottom: 60}}
             />
     </View>
