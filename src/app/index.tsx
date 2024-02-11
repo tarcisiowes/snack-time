@@ -19,7 +19,11 @@ export default function Home() {
         <FlatList
             data={CATEGORIES}
             keyExtractor={item => item}
-            renderItem={({item}) => <CategoryButton title={item} />}
+            renderItem={({item}) => <CategoryButton
+                title={item}
+                isSelected={item === selectedCategory}
+                onPress={() => handleSelectCategory(item)}
+            />}
             horizontal
             showsHorizontalScrollIndicator={false}
             className="max-h-10 mt-5"
