@@ -1,7 +1,8 @@
 import {ProductCartProps} from "@/data-store/cart-store";
+import {ProductProps} from "@/utils/data/products";
 
 
-export function add(products: ProductCartProps[], newProduct: ProductCartProps) {
+export function add(products: ProductCartProps[], newProduct: ProductProps) {
     const existingProduct = products.find(({id}) => id === newProduct.id)
 
     if (existingProduct) {
