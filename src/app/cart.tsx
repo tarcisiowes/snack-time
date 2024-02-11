@@ -1,11 +1,13 @@
-import {ScrollView, Text, View} from "react-native";
+import {KeyboardAvoidingView, KeyboardAvoidingViewBase, ScrollView, Text, View} from "react-native";
+import {Feather} from "@expo/vector-icons";
 
+import {Button} from "@/components/button";
+import {Input} from "@/components/input";
 import {Header} from "@/components/header";
-import {Product} from "@/components/product";
 import {LinkButton} from "@/components/link-button";
+import {Product} from "@/components/product";
 import {useCartStore} from "@/data-store/cart-store";
 import {formatCurrency} from "@/utils/string-helper/format-currency";
-import {Input} from "@/components/input";
 
 export default function CartScreen() {
     const cartStore = useCartStore()
@@ -17,7 +19,7 @@ export default function CartScreen() {
     return (
         <View className="flex-1 pt-8" >
             <Header title="Seu carrinho" />
-            <ScrollView className="flex-1">
+            <ScrollView className="flex-1 border-b border-amber-600">
                 <View className="flex-1 p-5">
                     {cartStore.products.map((product) => (
                         <Product data={product} key={product.id} />
