@@ -10,7 +10,7 @@ export function Header({title, cartQuantityItems}: HeaderProps) {
     return (
         <View className="flex-row items-center border-b border-amber-300 pb-5 mx-5">
             <View className="flex-1">
-                <Image source={require('@/assets/logo/logo-small-brown-transparent.png')} className="w-32 h-11 absolute bottom-8 left-1" />
+                <Image source={require('@/assets/logo/logo-small-brown-transparent.png')} className="w-44 h-11 absolute bottom-8 left-0" />
                 <Text className="text-amber-950 text-xl font-heading mt-2">{title}</Text>
             </View>
 
