@@ -4,10 +4,10 @@ import {Link} from "expo-router";
 
 type HeaderProps = {
     title: string;
-    cartQuantityItems: number;
+    cartQuantityItems?: number;
 }
 
-export function Header({title, cartQuantityItems}: HeaderProps) {
+export function Header({title, cartQuantityItems = 0}: HeaderProps) {
     return (
         <View className="flex-row items-center border-b border-amber-300 pb-5 mx-5">
             <View className="flex-1">
