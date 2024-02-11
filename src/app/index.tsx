@@ -38,6 +38,8 @@ export default function Home() {
             renderItem={({item}) => (
                 <Product data={item} />)
             }
+            className="flex-1 p-5"
+            contentContainerStyle={{paddingBottom: 60}}
             />
     </View>
   );
