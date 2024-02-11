@@ -7,3 +7,4 @@ Using:
 - TypeScript
 - Tailwind
 - Zustand
+- Color accessibility
