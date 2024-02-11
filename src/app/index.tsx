@@ -38,6 +38,9 @@ export default function Home() {
             renderItem={({item}) => (
                 <Product data={item} />)
             }
+            renderSectionHeader={({section: {title}}) => (
+                <Text className="text-xl text-slate-900 font-heading mt-8 mb-3">{title}</Text>
+            )}
             className="flex-1 p-5"
             contentContainerStyle={{paddingBottom: 60}}
             />
