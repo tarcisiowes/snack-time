@@ -16,6 +16,11 @@ export default function CartScreen() {
                         <Product data={product} key={product.id} />
                     ))}
                 </View>
+                {cartStore.products.length === 0 && (
+                    <View className="flex-1 justify-center items-center">
+                        <Text className="text-amber-950 text-2xl font-heading">Seu carrinho está vazio</Text>
+                    </View>
+                )}
             </ScrollView>
 
         </View>
