@@ -2,6 +2,7 @@ import {ScrollView, Text, View} from "react-native";
 
 import {Header} from "@/components/header";
 import {Product} from "@/components/product";
+import {LinkButton} from "@/components/link-button";
 import {useCartStore} from "@/data-store/cart-store";
 import {formatCurrency} from "@/utils/string-helper/format-currency";
 
@@ -35,6 +36,11 @@ export default function CartScreen() {
                 </Text>
             </View>
 
+            <View className="p-5 pb-8 gap-5">
+                <LinkButton href="/" title="Finalizar Pedido" />
+            </View>
+
+            <LinkButton href="/" title="Voltar ao Cardápio" />
         </View>
     );
 }
