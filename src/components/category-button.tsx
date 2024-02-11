@@ -4,10 +4,10 @@ import clsx from "clsx";
 
 type CategoryButtonProps = PressableProps &{
     title: string;
-    isSelect?: boolean;
+    isSelected?: boolean;
 }
 
-export function CategoryButton({title, isSelect, ...rest} : CategoryButtonProps) {
+export function CategoryButton({title, isSelected, ...rest} : CategoryButtonProps) {
     return (
         <Pressable className={clsx(
             "bg-amber-400 px-4 h-10 justify-center rounded-md border-2 border-transparent",
