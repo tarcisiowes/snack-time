@@ -3,5 +3,7 @@ An app solution for small restaurants to delivery snacks and order made by whats
 
 Using:
 - React Native Expo
+- Expo router
 - TypeScript
 - Tailwind
+- Zustand
