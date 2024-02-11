@@ -16,11 +16,11 @@ export const Product = forwardRef<TouchableOpacity, ProductProps>(
     ({data, ...rest}, ref) => {
   return (
       <TouchableOpacity ref={ref} className="w-full flex-row items-center pb-4" {...rest}>
-        <Image source={data.thumbnail} className="w-35 h-35 rounded-md" />
-            <View className="flex-1 ml-3" >
-            <Text className="text-slate-900 font-subTitle text-base flex-1">{data.title}</Text>
-            <Text className="text-slate-800 text-sm leading-5 mt-0.5">{data.description}</Text>
-        </View>
+          <Image source={data.thumbnail} className="w-36 h-36 rounded-md" />
+          <View className="flex-1 ml-3 " >
+            <Text className="text-slate-900 font-subTitle text-base">{data.title}</Text>
+            <Text className="text-slate-800 text-md leading-5 mt-3">{data.description}</Text>
+          </View>
       </TouchableOpacity>
   );
 })
