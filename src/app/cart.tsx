@@ -5,6 +5,7 @@ import {Product} from "@/components/product";
 import {LinkButton} from "@/components/link-button";
 import {useCartStore} from "@/data-store/cart-store";
 import {formatCurrency} from "@/utils/string-helper/format-currency";
+import {Input} from "@/components/input";
 
 export default function CartScreen() {
     const cartStore = useCartStore()
@@ -14,7 +15,7 @@ export default function CartScreen() {
     ))
 
     return (
-        <View className="flex-1 pt-8">
+        <View className="flex-1 pt-8" >
             <Header title="Seu carrinho" />
             <ScrollView className="flex-1">
                 <View className="flex-1 p-5">
@@ -29,13 +30,17 @@ export default function CartScreen() {
                 )}
             </ScrollView>
 
-            <View className="flex-row items-center mt-5 mb-4 px-3">
+            <View className="flex-row items-center mt-5 mb-4 px-4">
                 <Text className="text-amber-950 text-xl font-subTitle">Total: </Text>
                 <Text className="text-green-800 text-2xl font-heading">
                     {total}
                 </Text>
             </View>
 
+            <View className="gap-2 px-4">
+                <Text className="text-amber-950 text-xl font-subTitle">Informe seu endereço completo: </Text>
+                <Input />
+            </View>
             <View className="p-5 pb-8 gap-5">
                 <LinkButton href="/" title="Finalizar Pedido" />
             </View>
