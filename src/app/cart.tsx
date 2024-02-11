@@ -39,6 +39,7 @@ export default function CartScreen() {
                 </Text>
             </View>
 
+            {/*TODO - need fix problem with keyboard covering the input*/}
             <View className="gap-2 px-4">
                 <Text className="text-amber-950 text-xl font-subTitle">Informe seu endereço completo: </Text>
                 <Input />
