@@ -41,8 +41,15 @@ export default function CartScreen() {
                 <Text className="text-amber-950 text-xl font-subTitle">Informe seu endereço completo: </Text>
                 <Input />
             </View>
-            <View className="p-5 pb-8 gap-5">
-                <LinkButton href="/" title="Finalizar Pedido" />
+
+            <View className="p-4 pb-8 gap-5">
+                {/*<LinkButton href="/" title="Finalizar Pedido" />*/}
+                <Button>
+                    <Button.Icon>
+                        <Feather name="arrow-right-circle" size={24} color="white" />
+                    </Button.Icon>
+                    <Button.Text>Fazer pedido</Button.Text>
+                </Button>
             </View>
 
             <LinkButton href="/" title="Voltar ao Cardápio" />
