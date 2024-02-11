@@ -10,6 +10,7 @@ export default function ProductScreen() {
 
     return (
         <View className="flex-1">
+            {/*TODO - add verification of device type to add translate property to the image, right now it's only for ios*/}
             <Image
                 source={product.cover}
                 className="w-full h-72 transform -translate-y-16"
