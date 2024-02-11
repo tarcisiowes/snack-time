@@ -14,17 +14,21 @@ export default function Home() {
     function handleSelectCategory(category: string) {
         setSelectedCategory(category)
 
-        const sectionIndex = CATEGORIES.findIndex(
-            (category) => category === selectedCategory
-        )
+        setSelectedCategory((prevSelectedCategory) => {
+            const sectionIndex = CATEGORIES.findIndex(
+                (category) => category === prevSelectedCategory
+            );
 
-        if (sectionListRef.current) {
-            sectionListRef.current.scrollToLocation({
-                sectionIndex,
-                itemIndex: 0,
-                animated: true,
-            })
-        }
+            if (sectionListRef.current) {
+                sectionListRef.current.scrollToLocation({
+                    sectionIndex,
+                    itemIndex: 0,
+                    animated: true,
+                });
+            }
+
+            return category;
+        });
     }
 
   return (
