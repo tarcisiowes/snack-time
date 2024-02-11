@@ -1,5 +1,5 @@
 import {Image, Text, View} from "react-native";
-import {useLocalSearchParams, useNavigation} from "expo-router";
+import {Redirect, useLocalSearchParams, useNavigation} from "expo-router";
 import {Feather} from "@expo/vector-icons";
 
 import {Button} from "@/components/button";
@@ -12,12 +12,14 @@ export default function ProductScreen() {
     const cartStore = useCartStore()
     const navigation = useNavigation()
     const {id} = useLocalSearchParams()
-    const product = PRODUCTS.filter((product) => product.id === id)[0]
+    const product = PRODUCTS.find((item) => item.id === id)
 
     function handleAddToCart() {
-        cartStore.add(product)
+        cartStore.add(product!)
         navigation.goBack()
     }
+
+    if (!product) return <Redirect href={"/"} />
 
     return (
         <View className="flex-1">
