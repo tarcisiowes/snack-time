@@ -4,6 +4,7 @@ import {Header} from "@/components/header";
 import {CategoryButton} from "@/components/category-button";
 import {CATEGORIES, MENU} from "@/utils/data/products";
 import {useState} from "react";
+import {Product} from "@/components/product";
 
 export default function Home() {
     const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0])
@@ -35,13 +36,8 @@ export default function Home() {
             keyExtractor={(item ) => item.id}
             stickySectionHeadersEnabled={false}
             renderItem={({item}) => (
-                <View className="flex-row items-center justify-between px-5 py-4 bg-white rounded-lg shadow-md mt-5">
-                    <View className="flex-1">
-                        <Text className="text-slate-900 font-subTitle">{item.title}</Text>
-                        <Text className="text-amber-500 font-subTitle">R$ {item.price}</Text>
-                    </View>
-                </View>
-            )}
+                <Product data={item} />)
+            }
             />
     </View>
   );
