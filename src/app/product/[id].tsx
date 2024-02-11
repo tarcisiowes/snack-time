@@ -4,6 +4,7 @@ import {PRODUCTS} from "@/utils/data/products";
 import {formatCurrency} from "@/utils/string-helper/format-currency";
 import {Button} from "@/components/button";
 import {Feather} from "@expo/vector-icons";
+import {LinkButton} from "@/components/link-button";
 
 
 export default function ProductScreen() {
@@ -43,6 +44,8 @@ export default function ProductScreen() {
                     <Button.Text>Adicionar ao carrinho</Button.Text>
                 </Button>
             </View>
+
+            <LinkButton href="/" title="Voltar ao Cardápio" />
 
         </View>
     );
