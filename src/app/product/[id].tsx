@@ -13,6 +13,10 @@ export default function ProductScreen() {
     const {id} = useLocalSearchParams()
     const product = PRODUCTS.filter((product) => product.id === id)[0]
 
+    function handleAddToCart() {
+        cartStore.add(product)
+    }
+
     return (
         <View className="flex-1">
             {/*TODO - add verification of device type to add translate property to the image, right now it's only for ios*/}
@@ -39,7 +43,7 @@ export default function ProductScreen() {
             </View>
 
             <View className="p-5 pb-8 gap-5">
-                <Button>
+                <Button onPress={handleAddToCart}>
                     <Button.Icon>
                         <Feather name="plus-circle" size={24} color="white" />
                     </Button.Icon>
