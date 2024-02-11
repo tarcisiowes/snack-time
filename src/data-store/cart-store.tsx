@@ -3,7 +3,7 @@ import {ProductProps} from "@/utils/data/products";
 import * as cartInMemory from "@/data-store/helpers/cart-in-memory";
 
 export type ProductCartProps = ProductProps & {
-    quantity?: number;
+    quantity: number;
 }
 
 type StateProps = {
