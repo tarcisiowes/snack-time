@@ -22,7 +22,7 @@ export default function ProductScreen() {
             <View className="px-5">
                 <View className="flex-row justify-between items-center mt-5">
                     <Text className="text-2xl font-heading my-2">{product.title}</Text>
-                    <Text className="text-2xl font-heading my-2">{formatCurrency(product.price)}</Text>
+                    <Text className="text-2xl font-bold my-2 text-green-800">{formatCurrency(product.price)}</Text>
                 </View>
                 <Text className="text-base font-body leading-6 mb-6">{product.description}</Text>
 
@@ -38,7 +38,7 @@ export default function ProductScreen() {
             <View className="p-5 pb-8 gap-5">
                 <Button>
                     <Button.Icon>
-                        <Feather name="plus-circle" size={24} color="black" />
+                        <Feather name="plus-circle" size={24} color="white" />
                     </Button.Icon>
                     <Button.Text>Adicionar ao carrinho</Button.Text>
                 </Button>
