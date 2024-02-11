@@ -9,6 +9,10 @@ type ButtonTextProps = {
     children: ReactNode;
 }
 
+type ButtonIconProps = {
+    children: ReactNode;
+}
+
 function Button({ children, ...rest }: ButtonProps) {
   return (
       <TouchableOpacity
@@ -27,4 +31,8 @@ function ButtonText({ children }: ButtonTextProps) {
           {children}
       </Text>
   )
+}
+
+function ButtonIcon({ children }: ButtonIconProps) {
+  return children
 }
