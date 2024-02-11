@@ -8,6 +8,10 @@ import {useState} from "react";
 export default function Home() {
     const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0])
 
+    function handleSelectCategory(category: string) {
+        setSelectedCategory(category)
+    }
+
   return (
     <View className="flex-1 pt-8">
         <Header title="Faça seu pedido" />
