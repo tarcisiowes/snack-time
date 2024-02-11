@@ -36,3 +36,8 @@ function ButtonText({ children }: ButtonTextProps) {
 function ButtonIcon({ children }: ButtonIconProps) {
   return children
 }
+
+Button.Text = ButtonText
+Button.Icon = ButtonIcon
+
+export { Button }
