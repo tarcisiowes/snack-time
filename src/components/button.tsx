@@ -1,6 +1,11 @@
-import {TouchableOpacity} from "react-native";
+import {TouchableOpacity, TouchableOpacityProps} from "react-native";
+import {ReactNode} from "react";
 
-function Button({ children, ...rest }) {
+type ButtonProps = TouchableOpacityProps & {
+    children: ReactNode;
+}
+
+function Button({ children, ...rest }: ButtonProps) {
   return (
       <TouchableOpacity
           className="h-12 bg-lime-400 rounded-md items-center justify-center flex-row"
