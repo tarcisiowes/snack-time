@@ -1,6 +1,8 @@
 # snack-time
 
-An app solution for small restaurants to delivery snacks and order made by whatsapp
+An app solution for small restaurants, 
+allows the customer to place an order 
+and send it to the restaurant's WhatsApp.
 
 Using:
 
