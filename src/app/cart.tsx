@@ -1,4 +1,4 @@
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { Alert, Linking, ScrollView, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import { Button } from '@/components/button';
@@ -8,8 +8,10 @@ import { LinkButton } from '@/components/link-button';
 import { ProductCard } from '@/components/product-card';
 import { ProductCartProps, useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
+import { useNavigation } from 'expo-router';
 
 export default function CartScreen() {
+    const navigation = useNavigation();
     const cartStore = useCartStore();
     const total = formatCurrency(
         cartStore.products.reduce(
@@ -45,6 +47,25 @@ export default function CartScreen() {
             (product) => `\n${product.quantity} - ${product.title}`,
         );
         const message = `Novo Pedido:\n${products}\nTotal: ${total}\nEndereço para entrega:\n${address}`;
+
+        Alert.alert('Confirmar pedido', `Deseja confirmar o pedido?`, [
+            {
+                text: 'Cancelar',
+                style: 'cancel',
+            },
+            {
+                text: 'Confirmar',
+                onPress: () => handleConfirmOrder(message),
+            },
+        ]);
+    }
+
+    function handleConfirmOrder(message: string) {
+        Linking.openURL(
+            `https://api.whatsapp.com/send?phone=55${PHONE_NUMBER}&text=${message}`,
+        );
+        cartStore.clear();
+        navigation.goBack();
     }
 
     return (
