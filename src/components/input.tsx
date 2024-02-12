@@ -1,7 +1,7 @@
-import {TextInput, TextInputProps} from "react-native";
-import colors from "tailwindcss/colors";
+import { TextInput, TextInputProps } from 'react-native';
+import colors from 'tailwindcss/colors';
 
-export function Input({ ...rest}: TextInputProps) {
+export function Input({ ...rest }: TextInputProps) {
     return (
         <TextInput
             multiline
