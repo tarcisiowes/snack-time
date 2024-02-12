@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 
 import { Header } from '@/components/header';
 import { CategoryButton } from '@/components/category-button';
-import { ProductCard } from '@/components/productCard';
+import { ProductCard } from '@/components/product-card';
 import { useCartStore } from '@/data-store/cart-store';
 import { CATEGORIES, MENU, ProductProps } from '@/utils/data/products';
 
