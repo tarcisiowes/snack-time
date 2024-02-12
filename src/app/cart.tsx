@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Alert, Linking, ScrollView, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
@@ -11,6 +12,7 @@ import { formatCurrency } from '@/utils/string-helper/format-currency';
 import { useNavigation } from 'expo-router';
 
 export default function CartScreen() {
+    const [address, setAddress] = useState('');
     const navigation = useNavigation();
     const cartStore = useCartStore();
     const total = formatCurrency(
@@ -104,12 +106,17 @@ export default function CartScreen() {
                 <Text className="text-amber-950 text-xl font-subTitle">
                     Informe seu endereço completo:{' '}
                 </Text>
-                <Input />
+                <Input
+                    onChangeText={setAddress}
+                    blurOnSubmit={true}
+                    onSubmitEditing={handleOrder}
+                    returnKeyType={'next'}
+                />
             </View>
 
             <View className="p-4 pb-8 gap-5">
                 {/*<LinkButton href="/" title="Finalizar Pedido" />*/}
-                <Button>
+                <Button onPress={handleOrder}>
                     <Button.Icon>
                         <Feather
                             name="arrow-right-circle"
