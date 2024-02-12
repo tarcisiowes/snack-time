@@ -1,10 +1,4 @@
-import {
-    KeyboardAvoidingView,
-    KeyboardAvoidingViewBase,
-    ScrollView,
-    Text,
-    View,
-} from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import { Button } from '@/components/button';
@@ -12,7 +6,7 @@ import { Input } from '@/components/input';
 import { Header } from '@/components/header';
 import { LinkButton } from '@/components/link-button';
 import { ProductCard } from '@/components/product-card';
-import { useCartStore } from '@/data-store/cart-store';
+import { ProductCartProps, useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
 
 export default function CartScreen() {
@@ -24,13 +18,34 @@ export default function CartScreen() {
         ),
     );
 
+    function handleRemoveProduct(product: ProductCartProps) {
+        Alert.alert(
+            'Remover produto',
+            `Deseja remover o ${product.title} do carrinho?`,
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Remover',
+                    onPress: () => cartStore.remove(product.id),
+                },
+            ],
+        );
+    }
+
     return (
         <View className="flex-1 pt-8">
             <Header title="Seu carrinho" />
             <ScrollView className="flex-1 border-b border-amber-600">
                 <View className="flex-1 p-5">
                     {cartStore.products.map((product) => (
-                        <ProductCard data={product} key={product.id} />
+                        <ProductCard
+                            data={product}
+                            key={product.id}
+                            onPress={() => handleRemoveProduct(product)}
+                        />
                     ))}
                 </View>
                 {cartStore.products.length === 0 && (
