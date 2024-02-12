@@ -64,8 +64,8 @@ export default function CartScreen() {
             </View>
 
             <View className="px-5 mt-5">
-                <LinkButton href="/checkout" title="Prosseguir" />
-                <LinkButton href="/" title="Voltar ao Cardápio" styleLess />
+                <LinkButton href="/checkout" title="Prosseguir" buttonStyle />
+                <LinkButton href="/" title="Voltar ao Cardápio" />
             </View>
         </View>
     );

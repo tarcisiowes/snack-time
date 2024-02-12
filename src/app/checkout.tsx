@@ -91,7 +91,7 @@ export default function Checkout() {
                     </Button.Icon>
                     <Button.Text>Fazer o pedido</Button.Text>
                 </Button>
-                <LinkButton href="/cart" title="Voltar ao Carrinho" styleLess />
+                <LinkButton href="/cart" title="Voltar ao Carrinho" />
             </View>
         </ScrollView>
     );

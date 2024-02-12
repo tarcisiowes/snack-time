@@ -6,23 +6,19 @@ import { Button } from '@/components/button';
 
 type LinkButtonProps = LinkProps<string> & {
     title: string;
-    styleLess?: boolean;
+    buttonStyle?: boolean;
 };
 
-export function LinkButton({
-    title,
-    styleLess = false,
-    ...rest
-}: LinkButtonProps) {
+export function LinkButton({ title, buttonStyle, ...rest }: LinkButtonProps) {
     return (
         <Link className={''} {...rest}>
             <View
                 className={clsx(
-                    'h-12 bg-green-800 rounded-md items-center justify-center flex-row w-96',
-                    styleLess && 'bg-transparent',
+                    'h-12 bg-transparent rounded-md items-center justify-center flex-row w-96',
+                    buttonStyle && 'bg-green-800',
                 )}
             >
-                {!styleLess && (
+                {buttonStyle && (
                     <Button.Icon>
                         <Feather
                             name="arrow-right-circle"
@@ -33,8 +29,8 @@ export function LinkButton({
                 )}
                 <Text
                     className={clsx(
-                        'text-slate-100 font-body text-base text-center ml-2',
-                        styleLess && 'text-slate-900',
+                        'text-slate-900 font-body text-base text-center ml-2',
+                        buttonStyle && 'text-slate-100',
                     )}
                 >
                     {title}
