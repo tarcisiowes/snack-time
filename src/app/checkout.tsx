@@ -80,8 +80,8 @@ export default function Checkout() {
                 onSubmitEditing={handleOrder}
                 returnKeyType={'next'}
             />
-            <View className="pt-5 gap-3">
-                <Button onPress={handleOrder}>
+            <View className="pt-5">
+                <Button onPress={handleOrder} className="my-4">
                     <Button.Icon>
                         <Feather
                             name="arrow-right-circle"

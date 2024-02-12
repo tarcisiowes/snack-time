@@ -54,7 +54,7 @@ export default function CartScreen() {
                 )}
             </ScrollView>
 
-            <View className="flex-row items-center mt-5 mb-4 px-4">
+            <View className="flex-row items-center mt-5 pb-8 px-4">
                 <Text className="text-amber-950 text-xl font-subTitle">
                     Total:{' '}
                 </Text>
@@ -63,7 +63,7 @@ export default function CartScreen() {
                 </Text>
             </View>
 
-            <View className="px-5 mt-5">
+            <View className="px-5 gap-5">
                 <LinkButton href="/checkout" title="Prosseguir" buttonStyle />
                 <LinkButton href="/" title="Voltar ao Cardápio" />
             </View>

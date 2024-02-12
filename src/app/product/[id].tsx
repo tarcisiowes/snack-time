@@ -54,16 +54,15 @@ export default function ProductScreen() {
                 ))}
             </View>
 
-            <View className="p-5 pb-8 gap-5">
+            <View className="p-5 pb-8 gap-5 mt-3">
                 <Button onPress={handleAddToCart}>
                     <Button.Icon>
                         <Feather name="plus-circle" size={24} color="white" />
                     </Button.Icon>
                     <Button.Text>Adicionar ao carrinho</Button.Text>
                 </Button>
+                <LinkButton href="/" title="Voltar ao Cardápio" />
             </View>
-
-            <LinkButton href="/" title="Voltar ao Cardápio" />
         </View>
     );
 }
