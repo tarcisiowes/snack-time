@@ -5,10 +5,10 @@ An app solution for small restaurants to delivery snacks and order made by whats
 Using:
 
 -   React Native Expo
--   Expo router
+-   Expo router {Navigation}
 -   TypeScript
--   Tailwind
--   Zustand
+-   Tailwind {Styles}
+-   Zustand {Global State}
 -   Color accessibility
--   Prettier
--   Async Storage
+-   Prettier {Code Formatter}
+-   Async Storage {Persist Local Data}
