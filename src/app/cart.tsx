@@ -35,6 +35,18 @@ export default function CartScreen() {
         );
     }
 
+    function handleOrder() {
+        if (address.trim() === '') {
+            Alert.alert('Aviso', 'Informe seu endereço completo para entrega');
+            return;
+        }
+
+        const products = cartStore.products.map(
+            (product) => `\n${product.quantity} - ${product.title}`,
+        );
+        const message = `Novo Pedido:\n${products}\nTotal: ${total}\nEndereço para entrega:\n${address}`;
+    }
+
     return (
         <View className="flex-1 pt-8">
             <Header title="Seu carrinho" />
