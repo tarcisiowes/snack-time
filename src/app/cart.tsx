@@ -1,20 +1,12 @@
-import { useState } from 'react';
 import { Alert, Linking, ScrollView, Text, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 
-import { Button } from '@/components/button';
-import { Input } from '@/components/input';
 import { Header } from '@/components/header';
 import { LinkButton } from '@/components/link-button';
 import { ProductCard } from '@/components/product-card';
 import { ProductCartProps, useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
-import { useNavigation } from 'expo-router';
-import { PHONE_NUMBER } from '@/utils/constants';
 
 export default function CartScreen() {
-    const [address, setAddress] = useState('');
-    const navigation = useNavigation();
     const cartStore = useCartStore();
     const total = formatCurrency(
         cartStore.products.reduce(
@@ -38,37 +30,6 @@ export default function CartScreen() {
                 },
             ],
         );
-    }
-
-    function handleOrder() {
-        if (address.trim() === '') {
-            Alert.alert('Aviso', 'Informe seu endereço completo para entrega');
-            return;
-        }
-
-        const products = cartStore.products.map(
-            (product) => `\n${product.quantity} - ${product.title}`,
-        );
-        const message = `Novo Pedido:\n${products}\nTotal: ${total}\nEndereço para entrega:\n${address}`;
-
-        Alert.alert('Confirmar pedido', `Deseja confirmar o pedido?`, [
-            {
-                text: 'Cancelar',
-                style: 'cancel',
-            },
-            {
-                text: 'Confirmar',
-                onPress: () => handleConfirmOrder(message),
-            },
-        ]);
-    }
-
-    function handleConfirmOrder(message: string) {
-        Linking.openURL(
-            `https://api.whatsapp.com/send?phone=55${PHONE_NUMBER}&text=${message}`,
-        );
-        cartStore.clear();
-        navigation.goBack();
     }
 
     return (
@@ -102,34 +63,10 @@ export default function CartScreen() {
                 </Text>
             </View>
 
-            {/*TODO - need fix problem with keyboard covering the input*/}
-            <View className="gap-2 px-4">
-                <Text className="text-amber-950 text-xl font-subTitle">
-                    Informe seu endereço completo:{' '}
-                </Text>
-                <Input
-                    onChangeText={setAddress}
-                    blurOnSubmit={true}
-                    onSubmitEditing={handleOrder}
-                    returnKeyType={'next'}
-                />
+            <View className="px-5 mt-5">
+                <LinkButton href="/checkout" title="Prosseguir" />
+                <LinkButton href="/" title="Voltar ao Cardápio" styleLess />
             </View>
-
-            <View className="p-4 pb-8 gap-5">
-                {/*<LinkButton href="/" title="Finalizar Pedido" />*/}
-                <Button onPress={handleOrder}>
-                    <Button.Icon>
-                        <Feather
-                            name="arrow-right-circle"
-                            size={24}
-                            color="white"
-                        />
-                    </Button.Icon>
-                    <Button.Text>Fazer pedido</Button.Text>
-                </Button>
-            </View>
-
-            <LinkButton href="/" title="Voltar ao Cardápio" />
         </View>
     );
 }
