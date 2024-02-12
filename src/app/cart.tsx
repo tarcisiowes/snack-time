@@ -10,6 +10,7 @@ import { ProductCard } from '@/components/product-card';
 import { ProductCartProps, useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
 import { useNavigation } from 'expo-router';
+import { PHONE_NUMBER } from '@/utils/constants';
 
 export default function CartScreen() {
     const [address, setAddress] = useState('');
