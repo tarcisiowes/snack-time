@@ -11,6 +11,7 @@ import { Button } from '@/components/button';
 import { Feather } from '@expo/vector-icons';
 
 export default function Checkout() {
+    // TODO - Implement a hook form to handle the address inputs
     const [address, setAddress] = useState('');
     const navigation = useNavigation();
     const cartStore = useCartStore();
