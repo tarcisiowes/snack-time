@@ -15,4 +15,4 @@ Using:
 -   Prettier [**Code Formatter**]
 -   Async Storage [**Persist Local Data**]
 -   React hook form [**Form handler**]
--   Via CEP [**API to get adrress with zipcode**]
+-   Via CEP [**API to get address with zipcode**]
