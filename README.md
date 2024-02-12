@@ -10,3 +10,5 @@ Using:
 -   Tailwind
 -   Zustand
 -   Color accessibility
+-   Prettier
+-   Async Storage
