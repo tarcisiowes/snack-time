@@ -47,6 +47,7 @@ export default function Checkout() {
         },
     });
 
+    const onSubmit = (data: AddressProps) => {
         const products = cartStore.products.map(
             (product) => `\n${product.quantity} - ${product.title}`,
         );
@@ -62,7 +63,7 @@ export default function Checkout() {
                 onPress: () => handleConfirmOrder(message),
             },
         ]);
-    }
+    };
 
     function handleConfirmOrder(message: string) {
         Linking.openURL(
@@ -231,7 +232,7 @@ export default function Checkout() {
             </View>
 
             <View className="pt-5">
-                <Button onPress={handleOrder} className="my-4">
+                <Button onPress={handleSubmit(onSubmit)} className="my-4">
                     <Button.Icon>
                         <Feather
                             name="arrow-right-circle"
