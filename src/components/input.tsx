@@ -3,26 +3,26 @@ import colors from 'tailwindcss/colors';
 import clsx from 'clsx';
 
 type InputProps = TextInputProps & {
-    placeholderText: string;
+    placeholder: string;
     smallWidth?: boolean;
     mediumWidth?: boolean;
 };
 
 export function Input({
-    placeholderText,
+    placeholder,
     smallWidth = false,
     mediumWidth = false,
     ...rest
 }: InputProps) {
     return (
         <TextInput
-            placeholder={placeholderText}
-            placeholderTextColor={colors.slate[500]}
+            placeholder={placeholder}
             className={clsx(
-                'h-16 px-4 py-3 bg-white border-2 border-orange-600 rounded-md text-amber-950 text-base font-body',
+                `h-16 px-4 py-3 mb-5 bg-white border-2 border-orange-600 rounded-md text-amber-950 text-base font-body ${rest.className}`,
                 smallWidth && 'w-1/4',
                 mediumWidth && 'w-2/3 ml-4',
             )}
+            autoCorrect={false}
             {...rest}
         />
     );
