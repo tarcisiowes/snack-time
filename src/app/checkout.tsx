@@ -6,9 +6,15 @@ import { Input } from '@/components/input';
 import { useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
 import { PHONE_NUMBER } from '@/utils/constants';
-import { LinkButton } from '@/components/link-button';
-import { Button } from '@/components/button';
-import { Feather } from '@expo/vector-icons';
+
+type AddressProps = {
+    zipCode: string;
+    neighborhood: string;
+    street: string;
+    number: string;
+    complement: string;
+    reference: string;
+};
 
 export default function Checkout() {
     // TODO - Implement a hook form to handle the address inputs
