@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useNavigation } from 'expo-router';
-import { Alert, Linking, ScrollView, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import colors from 'tailwindcss/colors';
 
 import { Input } from '@/components/input';
 import { useCartStore } from '@/data-store/cart-store';
@@ -17,7 +19,6 @@ type AddressProps = {
 };
 
 export default function Checkout() {
-    // TODO - Implement a hook form to handle the address inputs
     const [address, setAddress] = useState('');
     const navigation = useNavigation();
     const cartStore = useCartStore();
@@ -28,11 +29,20 @@ export default function Checkout() {
         ),
     );
 
-    function handleOrder() {
-        if (address.trim() === '') {
-            Alert.alert('Aviso', 'Informe seu endereço completo para entrega');
-            return;
-        }
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            zipCode: '',
+            neighborhood: '',
+            street: '',
+            number: '',
+            complement: '',
+            reference: '',
+        },
+    });
 
         const products = cartStore.products.map(
             (product) => `\n${product.quantity} - ${product.title}`,
