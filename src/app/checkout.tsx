@@ -35,6 +35,7 @@ export default function Checkout() {
     const {
         control,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -83,6 +84,14 @@ export default function Checkout() {
 
         setValue('street', result.logradouro);
         setValue('neighborhood', result.bairro);
+    };
+
+    const handleCEPChange = (text: string) => {
+        setValue('zipCode', text);
+
+        if (text.length === 8) {
+            fetchAddress({ cep: text });
+        }
     };
 
     return (
