@@ -53,18 +53,25 @@ export default function CartScreen() {
                     </View>
                 )}
             </ScrollView>
-
-            <View className="flex-row items-center mt-5 pb-8 px-4">
-                <Text className="text-amber-950 text-xl font-subTitle">
-                    Total:{' '}
-                </Text>
-                <Text className="text-green-800 text-2xl font-heading">
-                    {total}
-                </Text>
-            </View>
+            {cartStore.products.length > 0 && (
+                <View className="flex-row items-center mt-5 pb-8 px-4">
+                    <Text className="text-amber-950 text-xl font-subTitle">
+                        Total:{' '}
+                    </Text>
+                    <Text className="text-green-800 text-2xl font-heading">
+                        {total}
+                    </Text>
+                </View>
+            )}
 
             <View className="px-5 gap-5">
-                <LinkButton href="/checkout" title="Prosseguir" buttonStyle />
+                {cartStore.products.length > 0 && (
+                    <LinkButton
+                        href="/checkout"
+                        title="Prosseguir"
+                        buttonStyle
+                    />
+                )}
                 <LinkButton href="/" title="Voltar ao Cardápio" />
             </View>
         </View>
