@@ -74,6 +74,17 @@ export default function Checkout() {
         navigation.goBack();
     }
 
+    const fetchAddress = async (data: { cep: string }) => {
+        const response = await fetch(
+            `https://viacep.com.br/ws/${data.cep}/json/`,
+        );
+        const result: { logradouro: string; bairro: string } =
+            await response.json();
+
+        setValue('street', result.logradouro);
+        setValue('neighborhood', result.bairro);
+    };
+
     return (
         <ScrollView className="gap-4 px-4 pt-6 flex-1">
             <Text className="text-amber-950 text-2xl font-heading mb-4">
