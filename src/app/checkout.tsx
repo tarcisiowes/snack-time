@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Linking, Platform, ScrollView, Text, View } from 'react-native';
+import { Alert, Linking, ScrollView, Text, View } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigation } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
@@ -11,7 +11,7 @@ import { Input } from '@/components/input';
 import { LinkButton } from '@/components/link-button';
 import { useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
-import { PHONE_NUMBER } from '@/utils/constants';
+import { IOS_DEVICE, PHONE_NUMBER } from '@/utils/constants';
 
 type AddressProps = {
     zipCode: string;
@@ -107,7 +107,7 @@ export default function Checkout() {
                 <KeyboardAwareScrollView
                     contentContainerStyle={{ flexGrow: 1 }}
                     enableOnAndroid
-                    extraScrollHeight={Platform.OS === 'ios' ? 5 : 0}
+                    extraScrollHeight={IOS_DEVICE ? 5 : 0}
                 >
                     <View>
                         <Controller
