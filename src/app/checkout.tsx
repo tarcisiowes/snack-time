@@ -48,10 +48,11 @@ export default function Checkout() {
     });
 
     const onSubmit = (data: AddressProps) => {
+        const formattedAddress = `CEP: ${data.zipCode}\nBairro: ${data.neighborhood}\nRua: ${data.street}\nNumero: ${data.number}\nComplemento: ${data.complement}\nReferencia: ${data.reference}`;
         const products = cartStore.products.map(
             (product) => `\n${product.quantity} - ${product.title}`,
         );
-        const message = `Novo Pedido:\n${products}\nTotal: ${total}\nEndereço para entrega:\n${address}`;
+        const message = `Novo Pedido:\n${products}\nTotal: ${total}\nEndereço para entrega:\n${formattedAddress}`;
 
         Alert.alert('Confirmar pedido', `Deseja confirmar o pedido?`, [
             {
