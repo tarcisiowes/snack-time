@@ -118,7 +118,10 @@ export default function Checkout() {
                                     : colors.slate[500]
                             }
                             onBlur={onBlur}
-                            onChangeText={onChange}
+                            onChangeText={(text) => {
+                                onChange(text);
+                                handleCEPChange(text);
+                            }}
                             value={value}
                             keyboardType="numeric"
                             maxLength={8}
