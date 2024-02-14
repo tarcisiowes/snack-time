@@ -137,6 +137,7 @@ export default function Checkout() {
                                     value={value}
                                     keyboardType="numeric"
                                     maxLength={8}
+                                    returnKeyType={'next'}
                                 />
                             )}
                             name="zipCode"
@@ -165,6 +166,7 @@ export default function Checkout() {
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    returnKeyType={'next'}
                                 />
                             )}
                             name="neighborhood"
@@ -193,6 +195,7 @@ export default function Checkout() {
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    returnKeyType={'next'}
                                 />
                             )}
                             name="street"
@@ -218,6 +221,7 @@ export default function Checkout() {
                                     onChangeText={onChange}
                                     value={value}
                                     smallWidth
+                                    returnKeyType={'next'}
                                 />
                             )}
                             name="number"
@@ -246,6 +250,7 @@ export default function Checkout() {
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    returnKeyType={'next'}
                                 />
                             )}
                             name="complement"
