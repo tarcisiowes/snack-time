@@ -107,7 +107,7 @@ export default function Checkout() {
                 <KeyboardAwareScrollView
                     contentContainerStyle={{ flexGrow: 1 }}
                     enableOnAndroid
-                    extraScrollHeight={IOS_DEVICE ? 5 : 0}
+                    extraScrollHeight={IOS_DEVICE ? 40 : 0}
                 >
                     <View>
                         <Controller
