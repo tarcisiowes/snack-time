@@ -11,8 +11,8 @@ export type ProductCartProps = ProductProps & {
 
 type StateProps = {
     products: ProductCartProps[];
-    add: (product: ProductProps) => void;
-    remove: (product: string) => void;
+    add: (product: ProductProps, quantity: number) => void;
+    remove: (product: string, quantity: number) => void;
     clear: () => void;
 };
 
@@ -20,13 +20,21 @@ export const useCartStore = create(
     persist<StateProps>(
         (set) => ({
             products: [],
-            add: (product: ProductProps) =>
+            add: (product: ProductProps, quantity: number) =>
                 set((state) => ({
-                    products: cartInMemory.add(state.products, product),
+                    products: cartInMemory.add(
+                        state.products,
+                        product,
+                        quantity,
+                    ),
                 })),
-            remove: (productId: string) =>
+            remove: (productId: string, quantity: number) =>
                 set((state) => ({
-                    products: cartInMemory.remove(state.products, productId),
+                    products: cartInMemory.remove(
+                        state.products,
+                        productId,
+                        quantity,
+                    ),
                 })),
 
             clear: () => set(() => ({ products: [] })),
