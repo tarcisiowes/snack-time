@@ -28,7 +28,7 @@ export default function Checkout() {
     const cartStore = useCartStore();
     const total = formatCurrency(
         cartStore.products.reduce(
-            (total, product) => total + product.price * product.quantity,
+            (total, product) => total + product.price * product.quantity!,
             0,
         ),
     );
