@@ -22,47 +22,62 @@ export default function ProductScreen() {
     if (!product) return <Redirect href={'/'} />;
 
     return (
-        <View className="flex-1">
-            {/*TODO - add verification of device type to add translate property to the image, right now it's only for ios*/}
-            <Image
-                source={product.cover}
-                className="w-full h-72 transform -translate-y-16"
-                resizeMode={'cover'}
-            />
+        <ScrollView>
+            <View className="flex-1">
+                {/*TODO - add verification of device type to add translate property to the image, right now it's only for ios*/}
+                <Image
+                    source={product.cover}
+                    className="w-full h-72 transform -translate-y-5"
+                    resizeMode={'cover'}
+                />
 
-            <View className="px-5">
-                <View className="flex-row justify-between items-center mt-5">
-                    <Text className="text-2xl font-heading my-2">
-                        {product.title}
+                <View className="px-5">
+                    <View className="flex-row justify-between items-center mt-5">
+                        <Text className="text-2xl font-heading my-2">
+                            {product.title}
+                        </Text>
+                        <Text className="text-2xl font-bold my-2 text-green-800">
+                            {formatCurrency(product.price)}
+                        </Text>
+                    </View>
+                    <Text className="text-base font-body leading-6 mb-6">
+                        {product.description}
                     </Text>
-                    <Text className="text-2xl font-bold my-2 text-green-800">
-                        {formatCurrency(product.price)}
-                    </Text>
+
+                    {product.ingredients.map((ingredient, index) => (
+                        <Text
+                            key={ingredient}
+                            className="text-base font-body leading-6 mb-2"
+                        >
+                            {'\u2022'}
+                            {ingredient}
+                        </Text>
+                    ))}
                 </View>
-                <Text className="text-base font-body leading-6 mb-6">
-                    {product.description}
-                </Text>
 
-                {product.ingredients.map((ingredient, index) => (
-                    <Text
-                        key={ingredient}
-                        className="text-base font-body leading-6 mb-2"
-                    >
-                        {'\u2022'}
-                        {ingredient}
-                    </Text>
-                ))}
-            </View>
+                <View className="flex-row border-t border-gray-400 mt-5 py-3 px-5">
+                    <Text className="text-xl pt-2">Quantidade:</Text>
+                    <QuantityField
+                        quantity={quantity}
+                        handleQuantityDecrease={handleQuantityDecrease}
+                        handleQuantityIncrease={handleQuantityIncrease}
+                    />
+                </View>
 
-            <View className="p-5 pb-8 gap-5 mt-3">
-                <Button onPress={handleAddToCart}>
-                    <Button.Icon>
-                        <Feather name="plus-circle" size={24} color="white" />
-                    </Button.Icon>
-                    <Button.Text>Adicionar ao carrinho</Button.Text>
-                </Button>
-                <LinkButton href="/" title="Voltar ao Cardápio" />
+                <View className="p-5 pb-8 gap-5 mt-3">
+                    <Button onPress={() => handleAddToCart(quantity)}>
+                        <Button.Icon>
+                            <Feather
+                                name="plus-circle"
+                                size={24}
+                                color="white"
+                            />
+                        </Button.Icon>
+                        <Button.Text>Adicionar ao carrinho</Button.Text>
+                    </Button>
+                    <LinkButton href="/" title="Voltar ao Cardápio" />
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }
