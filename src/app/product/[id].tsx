@@ -11,12 +11,17 @@ import { QuantityField } from '@/components/quantity-field';
 import { useState } from 'react';
 
 export default function ProductScreen() {
+    const { id } = useLocalSearchParams();
     const cartStore = useCartStore();
     const navigation = useNavigation();
-    const { id } = useLocalSearchParams();
-    const product = PRODUCTS.find((item) => item.id === id);
     const [quantity, setQuantity] = useState(1);
+    const product = PRODUCTS.find((item) => item.id === id);
+    const productQuantity =
+        cartStore.products.find((item) => item.id === product!.id)?.quantity ||
+        0;
+
     function handleAddToCart(quantity: number) {
+        quantity = productQuantity + quantity;
         cartStore.add(product!, quantity);
         navigation.goBack();
     }
@@ -32,10 +37,6 @@ export default function ProductScreen() {
             setQuantity((prevQuantity) => prevQuantity - 1);
         }
     }
-
-    const { products, remove, add } = useCartStore();
-    const productQuantity =
-        products.find((item) => item.id === product.id)?.quantity || 1;
 
     return (
         <ScrollView>
