@@ -16,20 +16,24 @@ export default function CartScreen() {
     );
 
     function handleRemoveProduct(product: ProductCartProps) {
-        Alert.alert(
-            'Remover produto',
-            `Deseja remover o ${product.title} do carrinho?`,
-            [
-                {
-                    text: 'Cancelar',
-                    style: 'cancel',
-                },
-                {
-                    text: 'Remover',
-                    onPress: () => cartStore.remove(product.id),
-                },
-            ],
-        );
+        if (product.quantity! === 1) {
+            Alert.alert(
+                'Remover produto',
+                `Deseja remover o ${product.title} do carrinho?`,
+                [
+                    {
+                        text: 'Cancelar',
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Remover',
+                        onPress: () => cartStore.remove(product.id),
+                    },
+                ],
+            );
+        } else {
+            cartStore.remove(product.id);
+        }
     }
 
     return (
