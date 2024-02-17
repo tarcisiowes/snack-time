@@ -21,7 +21,6 @@ export default function ProductScreen() {
         0;
 
     function handleAddToCart(quantity: number) {
-        quantity = productQuantity + quantity;
         cartStore.add(product!, quantity);
         navigation.goBack();
     }
