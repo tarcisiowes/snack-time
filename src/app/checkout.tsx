@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Linking, ScrollView, Text, View } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigation } from 'expo-router';
@@ -68,14 +68,6 @@ export default function Checkout() {
         ]);
     };
 
-    function handleConfirmOrder(message: string) {
-        Linking.openURL(
-            `https://api.whatsapp.com/send?phone=55${PHONE_NUMBER}&text=${message}`,
-        );
-        cartStore.clear();
-        navigation.goBack();
-    }
-
     const fetchAddress = async (data: { cep: string }) => {
         const response = await fetch(
             `https://viacep.com.br/ws/${data.cep}/json/`,
@@ -95,190 +87,186 @@ export default function Checkout() {
         }
     };
 
+    function handleConfirmOrder(message: string) {
+        Linking.openURL(
+            `https://api.whatsapp.com/send?phone=55${PHONE_NUMBER}&text=${message}`,
+        );
+        cartStore.clear();
+        navigation.goBack();
+    }
+
     return (
-        <View className="flex-1">
-            <ScrollView
-                className="gap-4 px-4 pt-6 flex-1 flex-row"
+        <ScrollView
+            className="gap-4 px-4 pt-6 flex-1 flex-row"
+            contentContainerStyle={{ flexGrow: 1 }}
+        >
+            <KeyboardAwareScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
+                enableOnAndroid
+                extraScrollHeight={IOS_DEVICE ? 20 : 0}
             >
                 <Text className="text-amber-950 text-2xl font-heading mb-4">
                     Informe seu endereço completo:
                 </Text>
-                <KeyboardAwareScrollView
-                    contentContainerStyle={{ flexGrow: 1 }}
-                    enableOnAndroid
-                    extraScrollHeight={IOS_DEVICE ? 40 : 0}
-                >
-                    <View>
-                        <Controller
-                            control={control}
-                            rules={{
-                                required: true,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder={
-                                        errors.zipCode
-                                            ? 'É necessario informar o CEP'
-                                            : 'CEP'
-                                    }
-                                    placeholderTextColor={
-                                        errors.zipCode
-                                            ? colors.red[500]
-                                            : colors.slate[500]
-                                    }
-                                    onBlur={onBlur}
-                                    onChangeText={(text) => {
-                                        onChange(text);
-                                        handleCEPChange(text);
-                                    }}
-                                    value={value}
-                                    keyboardType="numeric"
-                                    maxLength={8}
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="zipCode"
-                        />
 
-                        <Controller
-                            control={control}
-                            rules={{
-                                maxLength: 20,
-                                required: true,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder={
-                                        errors.neighborhood
-                                            ? 'É necessario informar o Bairro'
-                                            : 'Bairro'
-                                    }
-                                    placeholderTextColor={
-                                        errors.neighborhood
-                                            ? colors.red[500]
-                                            : colors.slate[500]
-                                    }
-                                    onBlur={onBlur}
-                                    onChangeText={onChange}
-                                    value={value}
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="neighborhood"
-                        />
+                <View>
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: true,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder={
+                                    errors.zipCode
+                                        ? 'É necessario informar o CEP'
+                                        : 'CEP'
+                                }
+                                placeholderTextColor={
+                                    errors.zipCode
+                                        ? colors.red[500]
+                                        : colors.slate[500]
+                                }
+                                onBlur={onBlur}
+                                onChangeText={(text) => {
+                                    onChange(text);
+                                    handleCEPChange(text);
+                                }}
+                                value={value}
+                                keyboardType="numeric"
+                                maxLength={8}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                        name="zipCode"
+                    />
 
-                        <Controller
-                            control={control}
-                            rules={{
-                                maxLength: 50,
-                                required: true,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder={
-                                        errors.street
-                                            ? 'É necessario informar a Rua'
-                                            : 'Rua'
-                                    }
-                                    placeholderTextColor={
-                                        errors.street
-                                            ? colors.red[500]
-                                            : colors.slate[500]
-                                    }
-                                    onBlur={onBlur}
-                                    onChangeText={onChange}
-                                    value={value}
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="street"
-                        />
+                    <Controller
+                        control={control}
+                        rules={{
+                            maxLength: 20,
+                            required: true,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder={
+                                    errors.neighborhood
+                                        ? 'É necessario informar o Bairro'
+                                        : 'Bairro'
+                                }
+                                placeholderTextColor={
+                                    errors.neighborhood
+                                        ? colors.red[500]
+                                        : colors.slate[500]
+                                }
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                        name="neighborhood"
+                    />
 
-                        <Controller
-                            control={control}
-                            rules={{
-                                maxLength: 10,
-                                required: true,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder={'Numero'}
-                                    placeholderTextColor={
-                                        errors.number
-                                            ? colors.red[500]
-                                            : colors.slate[500]
-                                    }
-                                    onBlur={onBlur}
-                                    onChangeText={onChange}
-                                    value={value}
-                                    smallWidth
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="number"
-                        />
+                    <Controller
+                        control={control}
+                        rules={{
+                            maxLength: 50,
+                            required: true,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder={
+                                    errors.street
+                                        ? 'É necessario informar a Rua'
+                                        : 'Rua'
+                                }
+                                placeholderTextColor={
+                                    errors.street
+                                        ? colors.red[500]
+                                        : colors.slate[500]
+                                }
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                        name="street"
+                    />
 
-                        <Controller
-                            control={control}
-                            rules={{
-                                maxLength: 50,
-                                required: true,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder={
-                                        errors.complement
-                                            ? 'Complemeto é necessario'
-                                            : 'Complemeto'
-                                    }
-                                    placeholderTextColor={
-                                        errors.complement
-                                            ? colors.red[500]
-                                            : colors.slate[500]
-                                    }
-                                    onBlur={onBlur}
-                                    onChangeText={onChange}
-                                    value={value}
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="complement"
-                        />
+                    <Controller
+                        control={control}
+                        rules={{
+                            maxLength: 10,
+                            required: true,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder={'Numero'}
+                                placeholderTextColor={
+                                    errors.number
+                                        ? colors.red[500]
+                                        : colors.slate[500]
+                                }
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                smallWidth
+                                returnKeyType={'next'}
+                                keyboardType="numeric"
+                            />
+                        )}
+                        name="number"
+                    />
 
-                        <Controller
-                            control={control}
-                            rules={{
-                                maxLength: 50,
-                            }}
-                            render={({
-                                field: { onChange, onBlur, value },
-                            }) => (
-                                <Input
-                                    placeholder="Referencia"
-                                    placeholderTextColor={colors.slate[500]}
-                                    onBlur={onBlur}
-                                    onChangeText={onChange}
-                                    value={value}
-                                    blurOnSubmit={true}
-                                    onSubmitEditing={handleSubmit(onSubmit)}
-                                    returnKeyType={'next'}
-                                />
-                            )}
-                            name="reference"
-                        />
-                    </View>
-                </KeyboardAwareScrollView>
+                    <Controller
+                        control={control}
+                        rules={{
+                            maxLength: 50,
+                            required: true,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder={
+                                    errors.complement
+                                        ? 'Complemeto é necessario'
+                                        : 'Complemeto'
+                                }
+                                placeholderTextColor={
+                                    errors.complement
+                                        ? colors.red[500]
+                                        : colors.slate[500]
+                                }
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                        name="complement"
+                    />
+
+                    <Controller
+                        control={control}
+                        rules={{
+                            maxLength: 50,
+                        }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <Input
+                                placeholder="Referencia"
+                                placeholderTextColor={colors.slate[500]}
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                blurOnSubmit={true}
+                                onSubmitEditing={handleSubmit(onSubmit)}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                        name="reference"
+                    />
+                </View>
 
                 <View className="pt-5">
                     <Button onPress={handleSubmit(onSubmit)} className="my-4">
@@ -293,7 +281,7 @@ export default function Checkout() {
                     </Button>
                     <LinkButton href="/cart" title="Voltar ao Carrinho" />
                 </View>
-            </ScrollView>
-        </View>
+            </KeyboardAwareScrollView>
+        </ScrollView>
     );
 }
