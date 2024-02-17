@@ -44,7 +44,7 @@ export default function CartScreen() {
     return (
         <View className="flex-1 pt-8">
             <Header title="Seu carrinho" />
-            <ScrollView className="flex-1 border-b border-amber-600">
+            <ScrollView className="flex-1 border-b border-amber-600 mb-5">
                 <View className="flex-1 p-5">
                     {cartStore.products.map((product) => (
                         <Link
@@ -66,7 +66,7 @@ export default function CartScreen() {
                     ))}
                 </View>
                 {cartStore.products.length === 0 && (
-                    <View className="flex-1 justify-center items-center">
+                    <View className="flex-1 justify-center mt-5 items-center">
                         <Text className="text-amber-950 text-2xl font-heading">
                             Seu carrinho está vazio
                         </Text>
