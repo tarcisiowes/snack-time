@@ -5,12 +5,13 @@ import { LinkButton } from '@/components/link-button';
 import { ProductCard } from '@/components/product-card';
 import { ProductCartProps, useCartStore } from '@/data-store/cart-store';
 import { formatCurrency } from '@/utils/string-helper/format-currency';
+import { Link } from 'expo-router';
 
 export default function CartScreen() {
     const cartStore = useCartStore();
     const total = formatCurrency(
         cartStore.products.reduce(
-            (total, product) => total + product.price * product.quantity,
+            (total, product) => total + product.price * product.quantity!,
             0,
         ),
     );
@@ -36,17 +37,32 @@ export default function CartScreen() {
         }
     }
 
+    function handleAddProduct(product: ProductCartProps) {
+        cartStore.add(product, 1);
+    }
+
     return (
         <View className="flex-1 pt-8">
             <Header title="Seu carrinho" />
             <ScrollView className="flex-1 border-b border-amber-600">
                 <View className="flex-1 p-5">
                     {cartStore.products.map((product) => (
-                        <ProductCard
-                            data={product}
+                        <Link
+                            href={`/product/${product.id}`}
+                            asChild
                             key={product.id}
-                            onPress={() => handleRemoveProduct(product)}
-                        />
+                        >
+                            <ProductCard
+                                data={product}
+                                key={product.id}
+                                handleRemoveProduct={() =>
+                                    handleRemoveProduct(product)
+                                }
+                                handleAddProduct={() =>
+                                    handleAddProduct(product)
+                                }
+                            />
+                        </Link>
                     ))}
                 </View>
                 {cartStore.products.length === 0 && (
