@@ -18,7 +18,7 @@ export function Input({
         <TextInput
             placeholder={placeholder}
             className={clsx(
-                `h-16 px-4 py-3 mb-5 bg-white border-2 border-orange-600 rounded-md text-amber-950 text-base font-body ${rest.className}`,
+                `h-16 px-4 py-3 mb-5 bg-white border-2 border-orange-300 rounded-md text-amber-950 text-base font-body ${rest.className}`,
                 smallWidth && 'w-1/4',
                 mediumWidth && 'w-2/3',
             )}

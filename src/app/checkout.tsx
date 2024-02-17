@@ -95,6 +95,10 @@ export default function Checkout() {
         navigation.goBack();
     }
 
+    function handlePlaceholderStyle(errorType: any) {
+        return errorType ? colors.red[500] : colors.slate[400];
+    }
+
     return (
         <ScrollView
             className="gap-4 px-4 pt-6 flex-1 flex-row"
@@ -122,11 +126,9 @@ export default function Checkout() {
                                         ? 'É necessario informar o CEP'
                                         : 'CEP'
                                 }
-                                placeholderTextColor={
-                                    errors.zipCode
-                                        ? colors.red[500]
-                                        : colors.slate[500]
-                                }
+                                placeholderTextColor={handlePlaceholderStyle(
+                                    errors.zipCode,
+                                )}
                                 onBlur={onBlur}
                                 onChangeText={(text) => {
                                     onChange(text);
@@ -154,11 +156,9 @@ export default function Checkout() {
                                         ? 'É necessario informar o Bairro'
                                         : 'Bairro'
                                 }
-                                placeholderTextColor={
-                                    errors.neighborhood
-                                        ? colors.red[500]
-                                        : colors.slate[500]
-                                }
+                                placeholderTextColor={handlePlaceholderStyle(
+                                    errors.neighborhood,
+                                )}
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -181,11 +181,9 @@ export default function Checkout() {
                                         ? 'É necessario informar a Rua'
                                         : 'Rua'
                                 }
-                                placeholderTextColor={
-                                    errors.street
-                                        ? colors.red[500]
-                                        : colors.slate[500]
-                                }
+                                placeholderTextColor={handlePlaceholderStyle(
+                                    errors.street,
+                                )}
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -204,11 +202,9 @@ export default function Checkout() {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <Input
                                 placeholder={'Numero'}
-                                placeholderTextColor={
-                                    errors.number
-                                        ? colors.red[500]
-                                        : colors.slate[500]
-                                }
+                                placeholderTextColor={handlePlaceholderStyle(
+                                    errors.number,
+                                )}
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -233,11 +229,9 @@ export default function Checkout() {
                                         ? 'Complemeto é necessario'
                                         : 'Complemeto'
                                 }
-                                placeholderTextColor={
-                                    errors.complement
-                                        ? colors.red[500]
-                                        : colors.slate[500]
-                                }
+                                placeholderTextColor={handlePlaceholderStyle(
+                                    errors.complement,
+                                )}
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -254,8 +248,8 @@ export default function Checkout() {
                         }}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <Input
-                                placeholder="Referencia"
-                                placeholderTextColor={colors.slate[500]}
+                                placeholder="Ponto de referência"
+                                placeholderTextColor={colors.slate[400]}
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
