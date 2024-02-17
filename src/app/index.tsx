@@ -13,7 +13,7 @@ export default function Home() {
     const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
     const sectionListRef = useRef<SectionList<ProductProps>>(null);
     const cartQuantityItems = cartStore.products.reduce(
-        (total, product) => total + product.quantity,
+        (total, product) => total + product.quantity!,
         0,
     );
 
