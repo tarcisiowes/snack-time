@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 import { forwardRef } from 'react';
 
+import { QuantityField } from '@/components/quantity-field';
+import { formatCurrency } from '@/utils/string-helper/format-currency';
+
 type ProductDataProps = {
     title: string;
     description: string;
@@ -18,6 +21,8 @@ type ProductDataProps = {
 
 type ProductProps = TouchableOpacityProps & {
     data: ProductDataProps;
+    handleRemoveProduct?: (product: ProductDataProps) => void;
+    handleAddProduct?: (product: ProductDataProps) => void;
 };
 
 export const ProductCard = forwardRef<TouchableOpacity, ProductProps>(
@@ -37,15 +42,20 @@ export const ProductCard = forwardRef<TouchableOpacity, ProductProps>(
                         <Text className="text-slate-900 font-subTitle text-base">
                             {data.title}
                         </Text>
-                        {data.quantity && (
-                            <Text className="text-slate-900 font-subTitle text-base">
-                                x {data.quantity}
-                            </Text>
-                        )}
+                        <Text className="text-slate-900 font-subTitle text-base">
+                            {formatCurrency(data.price)}
+                        </Text>
                     </View>
                     <Text className="text-slate-800 text-md leading-5 mt-3">
                         {data.description}
                     </Text>
+                    {data.quantity && (
+                        <QuantityField
+                            quantity={data.quantity}
+                            handleQuantityDecrease={rest.handleRemoveProduct}
+                            handleQuantityIncrease={rest.handleAddProduct}
+                        />
+                    )}
                 </View>
             </TouchableOpacity>
         );
