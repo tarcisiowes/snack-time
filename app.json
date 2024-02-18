@@ -8,8 +8,8 @@
         "scheme": "myapp",
         "userInterfaceStyle": "light",
         "splash": {
-            "image": "./src/assets/logo/logo-large-amber.png",
-            "resizeMode": "contain",
+            "image": "./src/assets/logo/snack-time-splash.gif",
+            "resizeMode": "cover",
             "backgroundColor": "#F9B209"
         },
         "assetBundlePatterns": ["**/*"],
